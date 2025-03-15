@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صندوق اقتراحات رمضان</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        
+        :root {
+            --primary-color: #0d3b66;
+            --secondary-color: #f4d35e;
+            --accent-color: #ee964b;
+            --bg-color: #f9f5f0;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 60px;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+CiAgPGcgb3BhY2l0eT0iMC4xIj4KICAgIDxwYXRoIGQ9Ik0xMDAsNTAgQTUwLDUwIDAgMSwwIDEwMCwxNTAgQTUwLDUwIDAgMSwwIDEwMCw1MCBaIiBmaWxsPSIjMGQzYjY2IiAvPgogICAgPHBhdGggZD0iTTEwMCw2MCBMMTEwLDkwIEwxNDAsOTAgTDExNSwxMTAgTDEyNSwxNDAgTDEwMCwxMjAgTDc1LDE0MCBMODUsMTEwIEw2MCw5MCBMOTAsOTAgWiIgZmlsbD0iI2VlOTY0YiIgLz4KICA8L2c+Cjwvc3ZnPg==');
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: repeating-linear-gradient(
+                -45deg,
+                var(--secondary-color),
+                var(--secondary-color) 10px,
+                var(--accent-color) 10px,
+                var(--accent-color) 20px
+            );
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            display: block;
+            width: 80%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 5px auto 0;
+        }
+        
+        .ramadan-decoration {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .crescent {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .star {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0 15px;
+        }
+        
+        .form-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(13, 59, 102, 0.2);
+        }
+        
+        .form-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .form-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(238, 150, 75, 0.2);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        button:hover {
+            background-color: #0a2e50;
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        button svg {
+            margin-left: 8px;
+        }
+        
+        .suggestions-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(13, 59, 102, 0.2);
+        }
+        
+        .suggestions-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .suggestions-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+        
+        .suggestion-list {
+            list-style: none;
+        }
+        
+        .suggestion-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 10px;
+            position: relative;
+            transition: transform 0.3s;
+            background-color: #fcfcfc;
+            border-radius: 8px;
+        }
+        
+        .suggestion-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .suggestion-name {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .suggestion-date {
+            font-size: 0.9em;
+            color: #777;
+        }
+        
+        .suggestion-text {
+            line-height: 1.6;
+        }
+        
+        .no-suggestions {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-style: italic;
+        }
+        
+        .lantern {
+            display: inline-block;
+            margin: 0 15px;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container, .suggestions-container {
+                padding: 20px;
+            }
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .suggestion-item.new {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>صندوق اقتراحات رمضان</h1>
+            <div class="ramadan-decoration">
+                <div class="lantern">🏮</div>
+                <div class="star">✨</div>
+                <div class="crescent">☪️</div>
+                <div class="star">✨</div>
+                <div class="lantern">🏮</div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">أضف اقتراحك</h2>
+            <div class="success-message" id="successMessage">
+                تم إضافة اقتراحك بنجاح! شكراً لمساهمتك.
+            </div>
+            <form id="suggestionForm">
+                <label for="name">الاسم:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="suggestion">الاقتراح:</label>
+                <textarea id="suggestion" name="suggestion" required></textarea>
+                
+                <button type="submit">
+                    إرسال الاقتراح
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15.001z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        
+        <div class="suggestions-container">
+            <h2 class="suggestions-title">الاقتراحات المقدمة</h2>
+            <ul class="suggestion-list" id="suggestionList">
+                <li class="no-suggestions" id="noSuggestions">لا توجد اقتراحات حتى الآن. كن أول من يقدم اقتراحاً!</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>صندوق اقتراحات رمضان &copy; رمضان 1446 هـ</p>
+        </div>
+    </footer>
+    
+      <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+   <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAPM5ckcNJEMbMAEJjJyGWiuAaiCCdMY8U",
+        authDomain: "ramadan-3e3c8.firebaseapp.com",
+        projectId: "ramadan-3e3c8",
+        storageBucket: "ramadan-3e3c8.firebasestorage.app",
+        messagingSenderId: "132449818072",
+        appId: "1:132449818072:web:b7bf41da8a172c491ecead",
+        measurementId: "G-Y0QDS2J8BQ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadSuggestions();
+        
+        const form = document.getElementById('suggestionForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const suggestion = document.getElementById('suggestion').value;
+            
+            if (suggestion.length > 50) {
+                alert("الاقتراح يجب أن يكون أقل من أو يساوي 50 حرفًا.");
+                return;
+            }
+            
+            addSuggestion(name, suggestion);
+            
+            form.reset();
+            
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    });
+
+    function addSuggestion(name, suggestion) {
+        const newSuggestion = {
+            id: Date.now(),
+            name: name,
+            suggestion: suggestion,
+            date: new Date().toLocaleDateString('ar-SA')
+        };
+        
+        set(ref(database, 'suggestions/' + newSuggestion.id), newSuggestion);
+    }
+
+    function loadSuggestions() {
+        const suggestionsRef = ref(database, 'suggestions');
+        onValue(suggestionsRef, (snapshot) => {
+            const suggestions = snapshot.val() || [];
+            const suggestionList = document.getElementById('suggestionList');
+            suggestionList.innerHTML = '';
+            
+            if (Object.keys(suggestions).length > 0) {
+                Object.values(suggestions).forEach(suggestion => {
+                    displaySuggestion(suggestion);
+                });
+                document.getElementById('noSuggestions').style.display = 'none';
+            } else {
+                document.getElementById('noSuggestions').style.display = 'block';
+            }
+        });
+    }
+
+    function displaySuggestion(suggestion) {
+        const suggestionList = document.getElementById('suggestionList');
+        const suggestionItem = document.createElement('li');
+        suggestionItem.className = 'suggestion-item';
+        suggestionItem.innerHTML = `
+            <div class="suggestion-header">
+                <span class="suggestion-name">${suggestion.name}</span>
+                <span class="suggestion-date">${suggestion.date}</span>
+            </div>
+            <div class="suggestion-text">${suggestion.suggestion}</div>
+        `;
+        suggestionList.prepend(suggestionItem);
+    }
+</script>
+            </body>
+            </html>
